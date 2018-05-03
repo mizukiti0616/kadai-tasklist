@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user, only: [:destroy]
+  before_action :correct_user, only: [:destroy, :edit, :update]
   
   def index
      if logged_in?
@@ -59,6 +59,8 @@ def task_params
 end
 
 
+private
+ 
 def correct_user
     @tasklists = current_user.tasks.find_by(id: params[:id])
     unless @tasklists
